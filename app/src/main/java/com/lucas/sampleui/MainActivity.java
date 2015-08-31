@@ -63,13 +63,16 @@ public class MainActivity extends ActionBarActivity {
 
         hide.setChecked(sp.getBoolean("hide", false)); //把checkbox的值寫到SharedPreference裡面
     }
-    public void submit (View view) {
+    public void submit (View view) {                              // Submit在這!!
         String text = inputText.getText().toString();
         if (hide.isChecked()) {
             text = "*********";
         }
         inputText.setText("");
         Toast.makeText(this,text,Toast.LENGTH_LONG).show();
+
+        Utils.writeFile(this, "history.txt", text + "\n");
+
     }
 
 
