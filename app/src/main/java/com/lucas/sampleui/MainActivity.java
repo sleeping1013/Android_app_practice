@@ -8,9 +8,11 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.Vector;
@@ -20,6 +22,7 @@ public class MainActivity extends ActionBarActivity {
 
     private EditText inputText;
     private CheckBox hide;
+    private ListView history;
 
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
@@ -62,7 +65,25 @@ public class MainActivity extends ActionBarActivity {
         });
 
         hide.setChecked(sp.getBoolean("hide", false)); //把checkbox的值寫到SharedPreference裡面
+
+        history = (ListView) findViewById(R.id.history);
+
+        loadHistory();
     }
+
+    private void loadHistory() {
+       String result = Utils.readFile(this, "history.txt");
+       String[] data = result.split("\n"); //由空格隔開形成array
+
+        ArrayAdapter<String> adaptor = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, data);
+
+       history.setAdapter(adaptor); // 把寫下來的值丟到ListView中
+
+   }
+
+
+
     public void submit (View view) {                              // Submit在這!!
         String text = inputText.getText().toString();
         if (hide.isChecked()) {
@@ -71,7 +92,8 @@ public class MainActivity extends ActionBarActivity {
         inputText.setText("");
         Toast.makeText(this,text,Toast.LENGTH_LONG).show();
 
-        Utils.writeFile(this, "history.txt", text + "\n");
+        Utils.writeFile(this, "history.txt", text + "\n"); // 在sumbit時寫入
+        loadHistory();
 
     }
 
