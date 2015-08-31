@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -52,6 +53,15 @@ public class MainActivity extends ActionBarActivity {
         inputText.setText(sp.getString("input", ""));
         hide = (CheckBox) findViewById(R.id.checkBox); // 在這裡才能開始拿到實體
 
+        hide.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                editor.putBoolean("hide",isChecked);
+                editor.commit();
+            }
+        });
+
+        hide.setChecked(sp.getBoolean("hide", false)); //把checkbox的值寫到SharedPreference裡面
     }
     public void submit (View view) {
         String text = inputText.getText().toString();
