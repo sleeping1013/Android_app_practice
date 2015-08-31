@@ -33,6 +33,8 @@ public class Utils {
             fis.read(buffer);
             fis.close();
 
+            return new String(buffer);
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

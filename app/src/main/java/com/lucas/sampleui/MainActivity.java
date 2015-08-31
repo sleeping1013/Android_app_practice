@@ -75,10 +75,10 @@ public class MainActivity extends ActionBarActivity {
        String result = Utils.readFile(this, "history.txt");
        String[] data = result.split("\n"); //由空格隔開形成array
 
-        ArrayAdapter<String> adaptor = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, data);
 
-       history.setAdapter(adaptor); // 把寫下來的值丟到ListView中
+       history.setAdapter(adapter); // 把寫下來的值丟到ListView中
 
    }
 
