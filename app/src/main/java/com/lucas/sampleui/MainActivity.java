@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.Vector;
@@ -23,6 +24,7 @@ public class MainActivity extends ActionBarActivity {
     private EditText inputText;
     private CheckBox hide;
     private ListView history;
+    private Spinner storeInfo;
 
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
@@ -67,9 +69,20 @@ public class MainActivity extends ActionBarActivity {
         hide.setChecked(sp.getBoolean("hide", false)); //把checkbox的值寫到SharedPreference裡面
 
         history = (ListView) findViewById(R.id.history);
+        storeInfo = (Spinner) findViewById(R.id.spinner);
 
         loadHistory();
     }
+
+    private void loadStoreInfo() {
+        //String[] data = getResources().getStringArray(R.array.store_info);
+        String[] data = {"台大店","師大店","西門店"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, data);
+        storeInfo.setAdapter(adapter);
+    }
+
+
 
     private void loadHistory() {
        String result = Utils.readFile(this, "history.txt");
