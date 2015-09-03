@@ -1,6 +1,7 @@
 package com.lucas.sampleui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -110,6 +111,11 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
+    public void goToDrinkMenu (View view) {
+        Intent intent = new Intent();
+        intent.setClass(this, DrinkMenuActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
