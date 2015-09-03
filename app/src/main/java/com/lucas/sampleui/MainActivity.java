@@ -76,7 +76,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void loadStoreInfo() {
-        //String[] data = getResources().getStringArray(R.array.store_info);
         //String[] data = {"台大店","師大店","西門店"}; //寫死法
         String[] data = getResources().getStringArray(R.array.store_info);
 
