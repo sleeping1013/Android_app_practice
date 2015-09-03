@@ -39,7 +39,6 @@ public class MainActivity extends ActionBarActivity {
         editor = sp.edit();
 
         inputText = (EditText) findViewById(R.id.editText);
-        //inputText.setText("Hello World");
         inputText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -57,8 +56,8 @@ public class MainActivity extends ActionBarActivity {
         });
 
         inputText.setText(sp.getString("input", ""));
-        hide = (CheckBox) findViewById(R.id.checkBox); // 在這裡才能開始拿到實體
 
+        hide = (CheckBox) findViewById(R.id.checkBox); // 在這裡才能開始拿到實體
         hide.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -73,11 +72,15 @@ public class MainActivity extends ActionBarActivity {
         storeInfo = (Spinner) findViewById(R.id.spinner);
 
         loadHistory();
+        loadStoreInfo();
     }
 
     private void loadStoreInfo() {
         //String[] data = getResources().getStringArray(R.array.store_info);
-        String[] data = {"台大店","師大店","西門店"};
+        //String[] data = {"台大店","師大店","西門店"}; //寫死法
+        String[] data = getResources().getStringArray(R.array.store_info);
+
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, data);
         storeInfo.setAdapter(adapter);
@@ -89,7 +92,7 @@ public class MainActivity extends ActionBarActivity {
        String result = Utils.readFile(this, "history.txt");
        String[] data = result.split("\n"); //由空格隔開形成array
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+       ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, data);
 
        history.setAdapter(adapter); // 把寫下來的值丟到ListView中

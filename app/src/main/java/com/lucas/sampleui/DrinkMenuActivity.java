@@ -4,6 +4,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -21,6 +23,12 @@ public class DrinkMenuActivity extends ActionBarActivity {
         String storeInfoStr = getIntent().getStringExtra("store_info"); //get spinner的內容
         storeInfo.setText(storeInfoStr); //取代文字
 
+    }
+
+    public void add(View view) {
+        Button button = (Button) view;
+        int count = Integer.parseInt(button.getText().toString());
+        button.setText(String.valueOf(count+1));
     }
 
 

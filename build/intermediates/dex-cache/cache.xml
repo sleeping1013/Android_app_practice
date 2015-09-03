@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
+        jar="C:\Users\user\Desktop\LucasTry\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\classes-45e9fafa4b8b4a88e57e6a6105c3f924bfb3933f.jar" />
+    </item>
+    <item
         jar="C:\Users\user\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\user\Documents\GitHub\LucasTry\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-0242e03cd59fe7866a66bd4a95b67553c3e970c1.jar" />
+        <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-0242e03cd59fe7866a66bd4a95b67553c3e970c1.jar" />
     </item>
     <item
-        jar="C:\Users\user\Documents\GitHub\LucasTry\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jar="C:\Users\user\Desktop\LucasTry\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\user\Documents\GitHub\LucasTry\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-df41debb12888d7e24a3742c423a4eca2eec27f8.jar" />
+        <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-b9b8f269f5d4d62984a893074763151e5bef88dd.jar" />
     </item>
     <item
-        jar="C:\Users\user\Documents\GitHub\LucasTry\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="C:\Users\user\Documents\GitHub\LucasTry\app\build\intermediates\pre-dexed\debug\classes-d969a3f2550c6b51140101f239729db5f9ac3fd0.jar" />
-    </item>
-    <item
-        jar="C:\Users\user\Documents\GitHub\LucasTry\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jar="C:\Users\user\Desktop\LucasTry\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\user\Documents\GitHub\LucasTry\app\build\intermediates\pre-dexed\debug\classes-4da6a883550199a947dac483b8c685edd4a1a108.jar" />
+        <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\classes-c11b728f08da2c903c653f353989d161a761594c.jar" />
     </item>
 
 </items>
