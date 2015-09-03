@@ -4,14 +4,23 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class DrinkMenuActivity extends ActionBarActivity {
+
+    private TextView storeInfo; //宣告
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drink_menu);
+
+        storeInfo = (TextView) findViewById(R.id.storeInfo); //取得實體
+
+        String storeInfoStr = getIntent().getStringExtra("store_info"); //get spinner的內容
+        storeInfo.setText(storeInfoStr); //取代文字
+
     }
 
 

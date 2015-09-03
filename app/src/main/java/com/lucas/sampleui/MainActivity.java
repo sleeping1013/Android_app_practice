@@ -112,8 +112,11 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void goToDrinkMenu (View view) {
+        String storeInfoString = (String) storeInfo.getSelectedItem(); //轉成String
+
         Intent intent = new Intent();
         intent.setClass(this, DrinkMenuActivity.class);
+        intent.putExtra("store_info", storeInfoString);//把值put出去
         startActivity(intent);
     }
 
