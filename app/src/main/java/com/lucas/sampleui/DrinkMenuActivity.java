@@ -2,12 +2,36 @@ package com.lucas.sampleui;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+/**
+ {
+ "note": "hello world",
+ "store_info": "南機場",
+ "menu" : [
+ {
+ "name": "black tea",
+ "l": 2,
+ "m": 0
+ },
+ {
+ "name": "tea",
+ "l": 5,
+ "m": 1
+ }
+ ]
+ }
+ */
 
 public class DrinkMenuActivity extends ActionBarActivity {
 
@@ -31,6 +55,38 @@ public class DrinkMenuActivity extends ActionBarActivity {
         button.setText(String.valueOf(count+1));
     }
 
+    // 用下面的method回傳一個JSON array
+    private JSONArray getValue() {
+
+        JSONArray result = new JSONArray();
+        LinearLayout root = (LinearLayout) findViewById(R.id.root);
+
+        int len = root.getChildCount();
+        for (int i = 1; i < len -1; i++) {
+
+            LinearLayout ll = (LinearLayout) root.getChildAt(i);
+            String name = ((TextView)ll.getChildAt(0)).getText().toString();
+            int l = Integer.valueOf(((Button) ll.getChildAt(1)).getText().toString());
+            int m = Integer.valueOf(((Button) ll.getChildAt(2)).getText().toString());
+
+            try {
+                JSONObject object = new JSONObject();
+                object.put("name",name);
+                object.put("l",l);
+                object.put("m",m);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return result;
+    }
+
+
+    public void done(View view) {
+            Log.d("debug", getValue().toString());
+            finish();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
