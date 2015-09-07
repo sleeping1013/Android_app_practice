@@ -18,6 +18,10 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Vector;
 
 
@@ -31,6 +35,9 @@ public class MainActivity extends ActionBarActivity {
 
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
+
+    private String drinkMenuResult;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +107,22 @@ public class MainActivity extends ActionBarActivity {
 
    }
 
+    private JSONObject pack() {
+
+        try {
+            JSONObject object = new JSONObject();
+            object.put("note", inputText.getText().toString());
+            object.put("store_info", (String) storeInfo.getSelectedItem());
+            if (drinkMenuResult != null)
+                object.put("menu", new JSONArray(drinkMenuResult));
+            return object;
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return  null;
+    }
+
 
 
     public void submit (View view) {                              // Submit在這!!
@@ -107,12 +130,14 @@ public class MainActivity extends ActionBarActivity {
         if (hide.isChecked()) {
             text = "*********";
         }
-        inputText.setText("");
+
         Toast.makeText(this,text,Toast.LENGTH_LONG).show();
 
-        Utils.writeFile(this, "history.txt", text + "\n"); // 在sumbit時寫入
+        Utils.writeFile(this, "history.txt", pack().toString() + "\n"); // 在sumbit時寫入
         loadHistory();
 
+        inputText.setText("");
+        drinkMenuResult = null;
     }
 
     public void goToDrinkMenu (View view) {
@@ -131,8 +156,8 @@ public class MainActivity extends ActionBarActivity {
         //super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_DRINK_MENU) {
             if (resultCode == RESULT_OK) {
-                String result = data.getStringExtra("result");
-                Log.d("debug", result);
+                String drinkMenuResult = data.getStringExtra("result");
+                Log.d("debug", drinkMenuResult);
             }
         }
     }
