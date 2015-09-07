@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +23,7 @@ import java.util.Vector;
 
 public class MainActivity extends ActionBarActivity {
 
+    private static final int REQUEST_DRINK_MENU = 1;
     private EditText inputText;
     private CheckBox hide;
     private ListView history;
@@ -119,7 +121,20 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent();
         intent.setClass(this, DrinkMenuActivity.class);
         intent.putExtra("store_info", storeInfoString);//把值put出去
-        startActivity(intent);
+        //startActivity(intent);
+        startActivityForResult(intent, REQUEST_DRINK_MENU);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_DRINK_MENU) {
+            if (resultCode == RESULT_OK) {
+                String result = data.getStringExtra("result");
+                Log.d("debug", result);
+            }
+        }
     }
 
     @Override

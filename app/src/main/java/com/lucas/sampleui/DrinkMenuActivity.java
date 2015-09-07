@@ -1,5 +1,6 @@
 package com.lucas.sampleui;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -84,8 +85,13 @@ public class DrinkMenuActivity extends ActionBarActivity {
 
 
     public void done(View view) {
-            Log.d("debug", getValue().toString());
+            //Log.d("debug", getValue().toString());
+            Intent data = new Intent();
+            data.putExtra("result", getValue().toString());
+
+            setResult(RESULT_OK, data);
             finish();
+
     }
 
     @Override
