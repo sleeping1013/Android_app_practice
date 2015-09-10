@@ -56,10 +56,6 @@ public class MainActivity extends ActionBarActivity {
         Parse.enableLocalDatastore(this);
         Parse.initialize(this, "kbdBJ7bunictVpfjTwNNejQayzhKTav0zeZmziei", "BNZ65eOBQiIbrbcWbBSl8akqgv5wSLEJShRORwr9");
 
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();
-
         sp = getSharedPreferences("settings", Context.MODE_PRIVATE);
         editor = sp.edit();
 
@@ -152,6 +148,7 @@ public class MainActivity extends ActionBarActivity {
 
    }
 
+
     private JSONObject pack() {
 
         try {
@@ -169,6 +166,22 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
+    private void saveOrder(){
+        ParseObject object = new ParseObject("Order"); //要上傳的表單名為Order
+        object.put("note", inputText.getText().toString()); // 和JSONObject語法一樣
+        object.put("store_info", (String) storeInfo.getSelectedItem());  // 和JSONObject語法一樣
+
+        if (drinkMenuResult != null) {
+            try {
+                object.put("menu", new JSONArray(drinkMenuResult));// 和JSONarray語法類似
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        object.saveInBackground();
+    }
+
 
     public void submit (View view) {                              // Submit在這!!
         String text = inputText.getText().toString();
@@ -178,7 +191,8 @@ public class MainActivity extends ActionBarActivity {
 
         Toast.makeText(this,text,Toast.LENGTH_LONG).show();
 
-        Utils.writeFile(this, "history.txt", pack().toString() + "\n"); // 在submit時寫入
+        //Utils.writeFile(this, "history.txt", pack().toString() + "\n"); // 在submit時寫入
+        saveOrder();
         loadHistory();
 
         inputText.setText("");
