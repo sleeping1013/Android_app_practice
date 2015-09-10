@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -25,6 +26,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 
@@ -109,10 +114,39 @@ public class MainActivity extends ActionBarActivity {
 
     private void loadHistory() {
        String result = Utils.readFile(this, "history.txt");
-       String[] data = result.split("\n"); //由空格隔開形成array
+       //String[] data = result.split("\n"); //由空格隔開形成array
+       String[] rawData = result.split("\n");
 
-       ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, data);
+       //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, // 這是舊版只顯示一個string的ListView
+       //         android.R.layout.simple_list_item_1, data);                        //
+
+
+        List<Map<String,String>> data  = new ArrayList<>();
+       for (int i = 0; i < rawData.length; i++) {
+           try {
+               JSONObject object = new JSONObject(rawData[i]);
+               String note =  object.getString("note");
+               String storeInfo = object.getString("store_info");
+               //if (object.has("menu")) {
+                   JSONArray menu = object.getJSONArray("menu");
+               //}
+
+               Map<String, String> item = new HashMap<>();
+               item.put("note",note);
+               item.put("store_info",storeInfo);
+               item.put("sum","5");
+
+               data.add(item);
+
+           } catch (JSONException e) {
+               e.printStackTrace();
+           }
+
+       }
+
+       String[] from = new String[]{"note","store_info", "sum"};
+       int[] to = new int[] {R.id.note, R.id.store_info, R.id.sum};
+       SimpleAdapter adapter = new SimpleAdapter(this, data, R.layout.listview_item, from, to);
 
        history.setAdapter(adapter); // 把寫下來的值丟到ListView中
 
@@ -144,7 +178,7 @@ public class MainActivity extends ActionBarActivity {
 
         Toast.makeText(this,text,Toast.LENGTH_LONG).show();
 
-        Utils.writeFile(this, "history.txt", pack().toString() + "\n"); // 在sumbit時寫入
+        Utils.writeFile(this, "history.txt", pack().toString() + "\n"); // 在submit時寫入
         loadHistory();
 
         inputText.setText("");
@@ -167,7 +201,7 @@ public class MainActivity extends ActionBarActivity {
         //super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_DRINK_MENU) {
             if (resultCode == RESULT_OK) {
-                String drinkMenuResult = data.getStringExtra("result");
+                drinkMenuResult = data.getStringExtra("result");
                 Log.d("debug", drinkMenuResult);
             }
         }

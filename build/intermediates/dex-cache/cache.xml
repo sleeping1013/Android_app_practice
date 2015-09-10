@@ -2,32 +2,11 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\user\Desktop\LucasTry\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\classes-c11b728f08da2c903c653f353989d161a761594c.jar" />
-    </item>
-    <item
         jar="C:\Users\user\Desktop\LucasTry\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
         <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\classes-45e9fafa4b8b4a88e57e6a6105c3f924bfb3933f.jar" />
-    </item>
-    <item
-        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.2.0\6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd\bolts-android-1.2.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
-        <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\bolts-android-1.2.0-ebbc6c4883b91c215ccac1e578bdb78653921571.jar" />
-    </item>
-    <item
-        jar="C:\Users\user\Desktop\LucasTry\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-b9b8f269f5d4d62984a893074763151e5bef88dd.jar" />
     </item>
     <item
         jar="C:\Users\user\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
@@ -37,11 +16,32 @@
         <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-0242e03cd59fe7866a66bd4a95b67553c3e970c1.jar" />
     </item>
     <item
+        jar="C:\Users\user\Desktop\LucasTry\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-b9b8f269f5d4d62984a893074763151e5bef88dd.jar" />
+    </item>
+    <item
         jar="C:\Users\user\Desktop\LucasTry\app\libs\Parse-1.10.1.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="181b435832725bec96c11ff568bdfbccdacab944">
         <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\Parse-1.10.1-9f0f7e68a86de1d0b479c92af3ca7cd532185b53.jar" />
+    </item>
+    <item
+        jar="C:\Users\user\Desktop\LucasTry\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\classes-c11b728f08da2c903c653f353989d161a761594c.jar" />
+    </item>
+    <item
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.2.0\6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd\bolts-android-1.2.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
+        <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\bolts-android-1.2.0-ebbc6c4883b91c215ccac1e578bdb78653921571.jar" />
     </item>
 
 </items>
