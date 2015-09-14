@@ -24,6 +24,7 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -146,8 +147,7 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-
-    private void saveOrder(){
+    private void saveOrder(SaveCallback saveCallback){
         ParseObject object = new ParseObject("Order"); //要上傳的表單名為Order
         object.put("note", inputText.getText().toString()); // 和JSONObject語法一樣
         object.put("store_info", (String) storeInfo.getSelectedItem());  // 和JSONObject語法一樣
@@ -160,8 +160,9 @@ public class MainActivity extends ActionBarActivity {
             }
         }
 
-        object.saveInBackground();
+        object.saveInBackground(saveCallback);
     }
+
 
 
     public void submit (View view) {                              // Submit在這!!
@@ -172,9 +173,12 @@ public class MainActivity extends ActionBarActivity {
 
         Toast.makeText(this,text,Toast.LENGTH_LONG).show();
 
-        //Utils.writeFile(this, "history.txt", pack().toString() + "\n"); // 在submit時寫入
-        saveOrder();
-        loadHistory();
+        saveOrder(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                loadHistory();
+            }
+        });
 
         inputText.setText("");
         drinkMenuResult = null;
