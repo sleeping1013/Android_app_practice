@@ -19,8 +19,11 @@ import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.Parse;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -109,61 +112,39 @@ public class MainActivity extends ActionBarActivity {
 
 
     private void loadHistory() {
-       String result = Utils.readFile(this, "history.txt");
-       //String[] data = result.split("\n"); //由空格隔開形成array
-       String[] rawData = result.split("\n");
+        //
+        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Order");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if(e == null){
+                    List<Map<String, String>> data = new ArrayList<>();
+                    for(int i =0; i < list.size(); i++) {
+                        ParseObject object = list.get(i); //
+                        String note = object.getString("note");
+                        String storeInfo = object.getString("store_info");
+                        JSONArray menu = object.getJSONArray("menu");
 
-       //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, // 這是舊版只顯示一個string的ListView
-       //         android.R.layout.simple_list_item_1, data);                        //
+                        Map<String, String> item = new HashMap<>();
+                        item.put("note",note);
+                        item.put("store_info",storeInfo);
+                        item.put("sum","5");
 
+                        data.add(item);
 
-        List<Map<String,String>> data  = new ArrayList<>();
-       for (int i = 0; i < rawData.length; i++) {
-           try {
-               JSONObject object = new JSONObject(rawData[i]);
-               String note =  object.getString("note");
-               String storeInfo = object.getString("store_info");
-               //if (object.has("menu")) {
-                   JSONArray menu = object.getJSONArray("menu");
-               //}
+                    }
+                    String[] from = new String[]{"note","store_info", "sum"};
+                    int[] to = new int[] {R.id.note, R.id.store_info, R.id.sum};
+                    SimpleAdapter adapter = new SimpleAdapter(MainActivity.this, data, R.layout.listview_item, from, to);
+                    history.setAdapter(adapter); // 把寫下來的值丟到ListView中
 
-               Map<String, String> item = new HashMap<>();
-               item.put("note",note);
-               item.put("store_info",storeInfo);
-               item.put("sum","5");
-
-               data.add(item);
-
-           } catch (JSONException e) {
-               e.printStackTrace();
-           }
-
-       }
-
-       String[] from = new String[]{"note","store_info", "sum"};
-       int[] to = new int[] {R.id.note, R.id.store_info, R.id.sum};
-       SimpleAdapter adapter = new SimpleAdapter(this, data, R.layout.listview_item, from, to);
-
-       history.setAdapter(adapter); // 把寫下來的值丟到ListView中
+                }
+            }
+        });
 
    }
 
 
-    private JSONObject pack() {
-
-        try {
-            JSONObject object = new JSONObject();
-            object.put("note", inputText.getText().toString());
-            object.put("store_info", (String) storeInfo.getSelectedItem());
-            if (drinkMenuResult != null)
-                object.put("menu", new JSONArray(drinkMenuResult));
-            return object;
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return  null;
-    }
 
 
     private void saveOrder(){
