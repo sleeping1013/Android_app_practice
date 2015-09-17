@@ -75,6 +75,7 @@ public class DrinkMenuActivity extends ActionBarActivity {
                 object.put("name",name);
                 object.put("l",l);
                 object.put("m",m);
+                result.put(object);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
