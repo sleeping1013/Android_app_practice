@@ -3,6 +3,7 @@ package com.lucas.sampleui;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,6 +42,8 @@ import java.util.Vector;
 public class MainActivity extends ActionBarActivity {
 
     private static final int REQUEST_DRINK_MENU = 1;
+    private static final int REQUEST_TAKE_PHOTO = 2;
+
     private EditText inputText;
     private CheckBox hide;
     private ListView history;
@@ -251,7 +254,10 @@ public class MainActivity extends ActionBarActivity {
                 drinkMenuResult = data.getStringExtra("result");
                 Log.d("debug", drinkMenuResult);
             }
+        } else if (requestCode ==REQUEST_TAKE_PHOTO) {
+
         }
+
     }
 
     @Override
@@ -269,7 +275,11 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_take_photo) {
+            Intent intent = new Intent();
+            intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, REQUEST_TAKE_PHOTO);
+
             return true;
         }
 
