@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -49,7 +50,7 @@ public class MainActivity extends ActionBarActivity {
     private SharedPreferences.Editor editor;
 
     private String drinkMenuResult;
-
+    private List<ParseObject> orderResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +95,13 @@ public class MainActivity extends ActionBarActivity {
         hide.setChecked(sp.getBoolean("hide", false)); //把checkbox的值寫到SharedPreference裡面
 
         history = (ListView) findViewById(R.id.history);
+        history.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                goToOrderDetail(position);
+            }
+        });
+
         storeInfo = (Spinner) findViewById(R.id.spinner);
 
         loadHistory();
@@ -143,6 +151,8 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if(e == null){
+                    orderResult = list;
+
                     List<Map<String, String>> data = new ArrayList<>();
                     for(int i =0; i < list.size(); i++) {
                         ParseObject object = list.get(i); //
@@ -207,6 +217,20 @@ public class MainActivity extends ActionBarActivity {
         inputText.setText("");
         drinkMenuResult = null;
     }
+
+
+    private void goToOrderDetail(int position) {
+
+        ParseObject order = orderResult.get(position);
+
+        Intent intent = new Intent();
+        intent.setClass(this, OrderDetailActivity.class);
+        intent.putExtra("note", order.getString("note"));
+        intent.putExtra("store_info", order.getString("store_info"));
+        intent.putExtra("menu", order.getJSONArray("menu").toString());
+        startActivity(intent);
+    }
+
 
     public void goToDrinkMenu (View view) {
         String storeInfoString = (String) storeInfo.getSelectedItem(); //轉成String
