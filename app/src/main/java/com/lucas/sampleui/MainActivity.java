@@ -3,6 +3,8 @@ package com.lucas.sampleui;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
@@ -48,19 +51,26 @@ public class MainActivity extends ActionBarActivity {
     private CheckBox hide;
     private ListView history;
     private Spinner storeInfo;
+    private ImageView imageView;
 
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
 
     private String drinkMenuResult;
-    private List<ParseObject> orderResult;
+
+
+
+
+
+
+
+     private List<ParseObject> orderResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
         Parse.initialize(this, "kbdBJ7bunictVpfjTwNNejQayzhKTav0zeZmziei", "BNZ65eOBQiIbrbcWbBSl8akqgv5wSLEJShRORwr9");
 
@@ -106,21 +116,13 @@ public class MainActivity extends ActionBarActivity {
         });
 
         storeInfo = (Spinner) findViewById(R.id.spinner);
+        imageView = (ImageView) findViewById(R.id.imageView);
 
         loadHistory();
         loadStoreInfo();
     }
 
     private void loadStoreInfo() {
-        //String[] data = {"台大店","師大店","西門店"}; //寫死法
-        /*String[] data = getResources().getStringArray(R.array.store_info);
-
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, data);
-        storeInfo.setAdapter(adapter);
-       */
-
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("StoreInfo"); //  !!! Parse.com上面要有一個class!!!
 
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -255,6 +257,11 @@ public class MainActivity extends ActionBarActivity {
                 Log.d("debug", drinkMenuResult);
             }
         } else if (requestCode ==REQUEST_TAKE_PHOTO) {
+
+            if (resultCode == RESULT_OK){
+                Bitmap bm = data.getParcelableExtra("data");
+                imageView.setImageBitmap(bm);
+            }
 
         }
 

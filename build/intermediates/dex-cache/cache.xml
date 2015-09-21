@@ -23,6 +23,13 @@
         <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-b9b8f269f5d4d62984a893074763151e5bef88dd.jar" />
     </item>
     <item
+        jar="C:\Users\user\Desktop\LucasTry\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.5.87\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\classes-81acac36d3c58146c100b409b3f585894ebbacae.jar" />
+    </item>
+    <item
         jar="C:\Users\user\Desktop\LucasTry\app\libs\Parse-1.10.1.jar"
         jumboMode="false"
         revision="21.1.2"
