@@ -5,12 +5,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 
 public class OrderDetailActivity extends ActionBarActivity {
 
     private TextView textView;
+    private WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +20,7 @@ public class OrderDetailActivity extends ActionBarActivity {
         setContentView(R.layout.activity_order_detail);
 
         textView = (TextView) findViewById(R.id.textView);
+        webView = (WebView) findViewById(R.id.webView);
 
         Intent intent = getIntent();
         String note = intent.getStringExtra("note");
@@ -28,6 +31,15 @@ public class OrderDetailActivity extends ActionBarActivity {
 
         textView.setText(note + "," + storeInfo + ",..." + menu);
 
+        loadWebView();
+    }
+
+    private final static String STATIC_MAP_URL = "https://maps.googleapis.com/maps/api/staticmap?";
+
+    private void loadWebView() {
+
+        String url = "https://maps.googleapis.com/maps/api/staticmap?center=25.020384,%20121.544608&zoom=15&size=600x300";
+        webView.loadUrl(url);
     }
 
 
