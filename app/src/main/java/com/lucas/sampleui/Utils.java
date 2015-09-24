@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by user on 2015/8/31.
@@ -58,4 +59,12 @@ public class Utils {
         return Uri.fromFile(file);
 
     }
+
+   // public static byte[] uriToBytes(Context context, Uri uri) {
+
+       // InputStream is = context.getContentResolver()
+
+    //}
+
+
 }
