@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -60,11 +62,24 @@ public class Utils {
 
     }
 
-   // public static byte[] uriToBytes(Context context, Uri uri) {
-
-       // InputStream is = context.getContentResolver()
-
-    //}
+//   public static byte[] uriToBytes(Context context, Uri uri) {
+//
+//       try {
+//           InputStream is = context.getContentResolver().openInputStream(uri);
+//           ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//
+//           byte[] buffer = new byte[1024];
+//           int len = 0;
+//           while(len = is.read()) {
+//               baos.write(buffer, 0, len);
+//           }
+//
+//       } catch (FileNotFoundException e) {
+//           e.printStackTrace();
+//       }
+//
+//
+//   }
 
 
 }

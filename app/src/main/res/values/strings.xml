@@ -7,4 +7,6 @@
     <string name="title_activity_drink_menu">DrinkMenuActivity</string>
     <string name="title_activity_order_detail">OrderDetailActivity</string>
     <string name="google_maps_key" templateMergeStrategy="preserve">AIzaSyDWHKmG7g9RPjqUR8yiXpu6Ouq0mV91OqA</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="facebook_app_id">873925779369200</string>
 </resources>
