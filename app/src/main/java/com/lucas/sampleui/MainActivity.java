@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.media.Image;
+import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -259,8 +260,9 @@ public class MainActivity extends ActionBarActivity {
         } else if (requestCode ==REQUEST_TAKE_PHOTO) {
 
             if (resultCode == RESULT_OK){
-                Bitmap bm = data.getParcelableExtra("data");
-                imageView.setImageBitmap(bm);
+                Uri uri = Utils.getPhotoUri();
+                imageView.setImageURI(uri);
+
             }
 
         }
@@ -285,6 +287,7 @@ public class MainActivity extends ActionBarActivity {
         if (id == R.id.action_take_photo) {
             Intent intent = new Intent();
             intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, Utils.getPhotoUri());
             startActivityForResult(intent, REQUEST_TAKE_PHOTO);
 
             return true;
