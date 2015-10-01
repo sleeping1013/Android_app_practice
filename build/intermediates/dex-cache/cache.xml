@@ -2,13 +2,6 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\user\Desktop\LucasTry\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\classes-45e9fafa4b8b4a88e57e6a6105c3f924bfb3933f.jar" />
-    </item>
-    <item
         jar="C:\Users\user\Desktop\LucasTry\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.5.87\classes.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -21,6 +14,13 @@
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
         <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-0242e03cd59fe7866a66bd4a95b67553c3e970c1.jar" />
+    </item>
+    <item
+        jar="C:\Users\user\Desktop\LucasTry\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="C:\Users\user\Desktop\LucasTry\app\build\intermediates\pre-dexed\debug\classes-45e9fafa4b8b4a88e57e6a6105c3f924bfb3933f.jar" />
     </item>
     <item
         jar="C:\Users\user\Desktop\LucasTry\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"

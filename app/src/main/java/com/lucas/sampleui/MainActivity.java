@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.SaveCallback;
@@ -58,14 +59,10 @@ public class MainActivity extends ActionBarActivity {
     private SharedPreferences.Editor editor;
 
     private String drinkMenuResult;
+    private List<ParseObject> orderResult;
 
+    private boolean hasPhoto = false;
 
-
-
-
-
-
-     private List<ParseObject> orderResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,6 +196,11 @@ public class MainActivity extends ActionBarActivity {
                 e.printStackTrace();
             }
         }
+        if (hasPhoto) {
+            ParseFile file = new ParseFile("photo.png",
+                    Utils.uriToBytes(this,Utils.getPhotoUri()));
+            object.put("photo", file);
+        }
 
         object.saveInBackground(saveCallback);
     }
@@ -222,6 +224,7 @@ public class MainActivity extends ActionBarActivity {
 
         inputText.setText("");
         drinkMenuResult = null;
+        hasPhoto = false;
     }
 
 
@@ -262,9 +265,8 @@ public class MainActivity extends ActionBarActivity {
             if (resultCode == RESULT_OK){
                 Uri uri = Utils.getPhotoUri();
                 imageView.setImageURI(uri);
-
+                hasPhoto = true;
             }
-
         }
 
     }
