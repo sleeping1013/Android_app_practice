@@ -31,8 +31,26 @@ public class OrderDetailActivity extends ActionBarActivity {
 
         textView.setText(note + "," + storeInfo + ",..." + menu);
 
+        loadGeoPoint(storeInfo);
         loadWebView();
     }
+
+    private void loadGeoPoint(String storeInfo){
+        String geoQueryUrl = Utils.getGeoQueryUrl(storeInfo);
+        Utils.NetworkTask task = new Utils.NetworkTask();
+        task.setCallback(new Utils.NetworkTask.Callback() {
+            @Override
+            public void done(byte[] fetchResult) {
+                String jsonString = new String(fetchResult);
+                textView.setText(jsonString);
+            }
+        });
+        task.execute(geoQueryUrl);
+    }
+
+
+
+
 
     private final static String STATIC_MAP_URL = "https://maps.googleapis.com/maps/api/staticmap?";
 
