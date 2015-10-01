@@ -13,6 +13,7 @@ public class OrderDetailActivity extends ActionBarActivity {
 
     private TextView textView;
     private WebView webView;
+    private double[] geoPoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class OrderDetailActivity extends ActionBarActivity {
         textView.setText(note + "," + storeInfo + ",..." + menu);
 
         loadGeoPoint(storeInfo);
-        loadWebView();
+//        loadWebView();
     }
 
     private void loadGeoPoint(String storeInfo){
@@ -42,7 +43,11 @@ public class OrderDetailActivity extends ActionBarActivity {
             @Override
             public void done(byte[] fetchResult) {
                 String jsonString = new String(fetchResult);
-                textView.setText(jsonString);
+                geoPoint = Utils.getGeoPoint(jsonString);
+                textView.setText("lat: " + geoPoint[0]
+                        + ", lng: " + geoPoint[1]);
+                loadWebView(geoPoint[0], geoPoint[1]);
+
             }
         });
         task.execute(geoQueryUrl);
@@ -54,9 +59,12 @@ public class OrderDetailActivity extends ActionBarActivity {
 
     private final static String STATIC_MAP_URL = "https://maps.googleapis.com/maps/api/staticmap?";
 
-    private void loadWebView() {
+    private void loadWebView(double lat, double lng) {
 
-        String url = "https://maps.googleapis.com/maps/api/staticmap?center=25.020384,%20121.544608&zoom=15&size=600x300";
+        String url = STATIC_MAP_URL + "cneter=" + lat + "," + lng +
+                "&zoom=15&size=600x300&markers=color:blue|" + lat + "," +lng;
+
+        //String url = "https://maps.googleapis.com/maps/api/staticmap?center=25.020384,%20121.544608&zoom=15&size=600x300";
         webView.loadUrl(url);
     }
 

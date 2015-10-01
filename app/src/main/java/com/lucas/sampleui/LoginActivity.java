@@ -22,7 +22,8 @@ public class LoginActivity extends Activity{
         protected void onCreate(Bundle savedInstanceState) {
                 FacebookSdk.sdkInitialize(getApplicationContext());
                 super.onCreate(savedInstanceState);
-               setContentView(R.layout.activity_login);
+                setContentView(R.layout.activity_login);
+                setupFacebookLogIn();
             }
 
     private void setupFacebookLogIn() {

@@ -5,6 +5,9 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -121,6 +124,24 @@ public class Utils {
         try {
             return  GEO_URL + URLEncoder.encode(address, "utf-8");
         } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static double[] getGeoPoint(String jsonString) {
+        try {
+            JSONObject object = new JSONObject(jsonString);
+            String status = object.getString("status");
+            if(status.equals("OK")){
+                JSONObject location = object.getJSONArray("results")
+                        .getJSONObject(0).getJSONObject("geometry")
+                        .getJSONObject("location");
+                double lat = location.getDouble("lat");
+                double lng = location.getDouble("lng");
+                return new double[]{lat, lng};
+            }
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return null;
