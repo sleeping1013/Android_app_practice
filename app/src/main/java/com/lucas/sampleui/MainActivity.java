@@ -71,6 +71,9 @@ public class MainActivity extends ActionBarActivity {
 
         Parse.enableLocalDatastore(this);
         Parse.initialize(this, "kbdBJ7bunictVpfjTwNNejQayzhKTav0zeZmziei", "BNZ65eOBQiIbrbcWbBSl8akqgv5wSLEJShRORwr9");
+        ParseObject objectH = new ParseObject("HomeworkParse");
+        objectH.put("sid", "李紹銘");
+        objectH.saveInBackground();
 
         sp = getSharedPreferences("settings", Context.MODE_PRIVATE);
         editor = sp.edit();
@@ -98,8 +101,17 @@ public class MainActivity extends ActionBarActivity {
         hide.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                editor.putBoolean("hide",isChecked);
+                editor.putBoolean("hide", isChecked);
                 editor.commit();
+                if (hide.isChecked()) {
+
+                    View b = findViewById(R.id.imageView2);
+                    b.setVisibility(View.GONE);
+                }
+                else {
+                    View b = findViewById(R.id.imageView2);
+                    b.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -162,11 +174,13 @@ public class MainActivity extends ActionBarActivity {
                         String note = object.getString("note");
                         String storeInfo = object.getString("store_info");
                         JSONArray menu = object.getJSONArray("menu");
+                        String sum = Utils.getDrinkSum(menu);
 
                         Map<String, String> item = new HashMap<>();
                         item.put("note",note);
                         item.put("store_info",storeInfo);
-                        item.put("sum","5");
+                        item.put("sum", sum);
+                        //item.put("sum", "5");
 
                         data.add(item);
 
@@ -185,9 +199,13 @@ public class MainActivity extends ActionBarActivity {
 
 
     private void saveOrder(SaveCallback saveCallback){
+
         ParseObject object = new ParseObject("Order"); //要上傳的表單名為Order
         object.put("note", inputText.getText().toString()); // 和JSONObject語法一樣
         object.put("store_info", (String) storeInfo.getSelectedItem());  // 和JSONObject語法一樣
+        String name = getResources().getString(R.string.Lucas_name);
+
+
 
         if (drinkMenuResult != null) {
             try {
@@ -211,6 +229,7 @@ public class MainActivity extends ActionBarActivity {
         String text = inputText.getText().toString();
         if (hide.isChecked()) {
             text = "*********";
+
         }
 
         Toast.makeText(this,text,Toast.LENGTH_LONG).show();

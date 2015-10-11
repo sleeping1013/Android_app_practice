@@ -94,6 +94,11 @@ public class DrinkMenuActivity extends ActionBarActivity {
             finish();
 
     }
+    public void cancel(View view) {
+
+        finish();
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

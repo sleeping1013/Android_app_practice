@@ -82,7 +82,9 @@
             android:layout_height="wrap_content"
             android:text="cancel"
             android:id="@+id/button7"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="cancel"
+            android:nestedScrollingEnabled="true" />
 
         <Button
             android:layout_width="0dp"

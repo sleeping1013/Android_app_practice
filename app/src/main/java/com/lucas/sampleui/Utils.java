@@ -1,10 +1,13 @@
 package com.lucas.sampleui;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Environment;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -173,6 +176,23 @@ public class Utils {
         }
 
     }
+
+
+    public static String getDrinkSum(JSONArray menu) {
+        try {
+            JSONArray jsonArray = new JSONArray(menu);
+            int sum1 = jsonArray.getJSONObject(0).getInt("l");
+            int sum2 = jsonArray.getJSONObject(0).getInt("l");
+            int sum3 = jsonArray.getJSONObject(1).getInt("m");
+            int sum4 = jsonArray.getJSONObject(1).getInt("l");
+            int summ = sum1+sum2+sum3+sum4;
+            return  String.valueOf(summ);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return  null;
+    }
+
 
 
 
